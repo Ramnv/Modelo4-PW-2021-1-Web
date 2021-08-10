@@ -5,7 +5,7 @@
  */
 package br.edu.ifsul.dao;
 
-import br.edu.ifsul.modelo04.Livraria;
+import br.edu.ifsul.modelo04.Livro;
 import java.io.Serializable;
 import javax.ejb.Stateful;
 
@@ -14,11 +14,11 @@ import javax.ejb.Stateful;
  * @author rvelasco
  */
 @Stateful
-public class LivrariaDAO<TIPO> extends DAOGenerico<Livraria> implements Serializable {
+public class LivroDAO<TIPO> extends DAOGenerico<Livro> implements Serializable {
 
-    public LivrariaDAO() {
+    public LivroDAO() {
         super();
-        classePersistente = Livraria.class;
+        classePersistente = Livro.class;
     }
 
 }

@@ -18,14 +18,17 @@
                 <p:submenu label="Cadastros">
                     <p:column>
                         <p:submenu label="Básicos">
-                            <p:menuitem action="#{controleEstado.listar()}"
-                                        value="Manutenção de estados"
+                            <p:menuitem action="#{controleLivro.listar()}"
+                                        value="Manutenção de livros"
                                         ajax="false"/>
-                            <p:menuitem action="#{controlePosicao.listar()}"
-                                        value="Manutenção de posições"
+                            <p:menuitem action="#{controleAutor.listar()}"
+                                        value="Manutenção de autores"
                                         ajax="false"/>
-                            <p:menuitem action="#{controleCidade.listar()}"
-                                        value="Manutenção de cidades"
+                            <p:menuitem action="#{controleIdioma.listar()}"
+                                        value="Manutenção de idiomas"
+                                        ajax="false"/>
+                            <p:menuitem action="#{controleFormato.listar()}"
+                                        value="Manutenção de formatos"
                                         ajax="false"/>
                         </p:submenu>
                     </p:column>

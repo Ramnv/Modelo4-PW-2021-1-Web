@@ -1,7 +1,7 @@
 package br.edu.ifsul.controle;
 
-import br.edu.ifsul.dao.AutorDAO;
-import br.edu.ifsul.modelo04.Autor;
+import br.edu.ifsul.dao.FormatoDAO;
+import br.edu.ifsul.modelo04.Formato;
 import br.edu.ifsul.util.Util;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -12,24 +12,24 @@ import javax.inject.Named;
  *
  * @author rvelasco
  */
-@Named(value = "controleAutor")
+@Named(value = "controleFormato")
 @ViewScoped
-public class ControleAutor implements Serializable {
+public class ControleFormato implements Serializable {
 
     @EJB
-    private AutorDAO<Autor> dao;
-    private Autor objeto;
+    private FormatoDAO<Formato> dao;
+    private Formato objeto;
 
-    public ControleAutor() {
+    public ControleFormato() {
 
     }
 
     public String listar() {
-        return "/privado/autor/listar?faces-redirect=true";
+        return "/privado/formato/listar?faces-redirect=true";
     }
 
     public void novo() {
-        objeto = new Autor();
+        objeto = new Formato();
     }
 
     public void alterar(Object id) {
@@ -63,19 +63,19 @@ public class ControleAutor implements Serializable {
         }
     }
 
-    public AutorDAO<Autor> getDao() {
+    public FormatoDAO<Formato> getDao() {
         return dao;
     }
 
-    public void setDao(AutorDAO<Autor> dao) {
+    public void setDao(FormatoDAO<Formato> dao) {
         this.dao = dao;
     }
 
-    public Autor getObjeto() {
+    public Formato getObjeto() {
         return objeto;
     }
 
-    public void setObjeto(Autor objeto) {
+    public void setObjeto(Formato objeto) {
         this.objeto = objeto;
     }
 
