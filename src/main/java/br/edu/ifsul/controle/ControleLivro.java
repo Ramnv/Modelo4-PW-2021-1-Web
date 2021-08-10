@@ -30,24 +30,24 @@ public class ControleLivro implements Serializable {
     }
 
     public String listar() {
-        return "/privado/livraria/listar?faces-redirect=true";
+        return "/privado/livro/listar?faces-redirect=true";
     }
 
     public void novo() {
-      //  objeto = new Livro();
+        objeto = new Livro();
     }
 
-    public void alterar(Object id) {
+    public void alterar(Object isbn) {
         try {
-            objeto = dao.localizar(id);
+            objeto = dao.localizar(isbn);
         } catch (Exception e) {
             Util.mensagemErro("Erro ao recuperar objeto: " + Util.getMensagemErro(e));
         }
     }
 
-    public void excluir(Object id) {
+    public void excluir(Object isbn) {
         try {
-            objeto = dao.localizar(id);
+            objeto = dao.localizar(isbn);
             dao.remover(objeto);
             Util.mensagemInformacao("Objeto removido com sucesso");
         } catch (Exception e) {
@@ -55,18 +55,18 @@ public class ControleLivro implements Serializable {
         }
     }
 
-//    public void salvar() {
-//        try {
-//            if (objeto.getId() == null) {
-//                dao.persist(objeto);
-//            } else {
-//                dao.merge(objeto);
-//            }
-//            Util.mensagemInformacao("Objeto persistido com sucesso!");
-//        } catch (Exception e) {
-//            Util.mensagemErro("Erro ao persistir objeto: " + Util.getMensagemErro(e));
-//        }
-//    }
+    public void salvar() {
+        try {
+            if (objeto.getISBN()== null) {
+                dao.persist(objeto);
+            } else {
+                dao.merge(objeto);
+            }
+            Util.mensagemInformacao("Objeto persistido com sucesso!");
+        } catch (Exception e) {
+            Util.mensagemErro("Erro ao persistir objeto: " + Util.getMensagemErro(e));
+        }
+    }
 
     public LivroDAO<Livro> getDao() {
         return dao;
