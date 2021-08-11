@@ -37,17 +37,17 @@ public class ControleLivro implements Serializable {
         objeto = new Livro();
     }
 
-    public void alterar(Object isbn) {
+    public void alterar(Object id) {
         try {
-            objeto = dao.localizar(isbn);
+            objeto = dao.localizar(id);
         } catch (Exception e) {
             Util.mensagemErro("Erro ao recuperar objeto: " + Util.getMensagemErro(e));
         }
     }
 
-    public void excluir(Object isbn) {
+    public void excluir(Object id) {
         try {
-            objeto = dao.localizar(isbn);
+            objeto = dao.localizar(id);
             dao.remover(objeto);
             Util.mensagemInformacao("Objeto removido com sucesso");
         } catch (Exception e) {
