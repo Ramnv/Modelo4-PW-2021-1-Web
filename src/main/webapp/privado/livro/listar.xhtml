@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     // Listar estados
 
@@ -29,27 +30,27 @@
                     <p:column headerText="Resumo">
                         <p:outputLabel value="#{obj.resumo}"/>
                     </p:column>   
-                    <p:column headerText="Editora">
-                        <p:outputLabel value="#{obj.editora}"/>
-                    </p:column>   
-                    <p:column headerText="DataPublicacao">
-                        <p:outputLabel value="#{obj.data_publicacao}"/>
-                    </p:column>   
-                    <p:column headerText="CodigoBarras">
-                        <p:outputLabel value="#{obj.codigo_barras}"/>
-                    </p:column>   
-                    <p:column headerText="NumeroPaginas">
-                        <p:outputLabel value="#{obj.numero_paginas}"/>
-                    </p:column>   
-                    <p:column headerText="Ativo">
-                        <p:outputLabel value="#{obj.ativo}"/>
-                    </p:column>   
-                    <p:column headerText="DataCadastro">
-                        <p:outputLabel value="#{obj.data_cadastro}"/>
-                    </p:column>   
-                    <p:column headerText="Valor">
-                        <p:outputLabel value="#{obj.valor}"/>
-                    </p:column>   
+                    <!--                    <p:column headerText="Editora">
+                                            <p:outputLabel value="#{obj.editora}"/>
+                                        </p:column>   
+                                        <p:column headerText="DataPublicacao">
+                                            <p:outputLabel value="#{obj.data_publicacao}"/>
+                                        </p:column>   
+                                        <p:column headerText="CodigoBarras">
+                                            <p:outputLabel value="#{obj.codigo_barras}"/>
+                                        </p:column>   
+                                        <p:column headerText="NumeroPaginas">
+                                            <p:outputLabel value="#{obj.numero_paginas}"/>
+                                        </p:column>   
+                                        <p:column headerText="Ativo">
+                                            <p:outputLabel value="#{obj.ativo}"/>
+                                        </p:column>   
+                                        <p:column headerText="DataCadastro">
+                                            <p:outputLabel value="#{obj.data_cadastro}"/>
+                                        </p:column>   
+                                        <p:column headerText="Valor">
+                                            <p:outputLabel value="#{obj.valor}"/>
+                                        </p:column>   -->
                     <p:column headerText="Ações">
                         <div align="center">
                             <p:commandButton actionListener="#{controleLivro.alterar(obj.isbn)}" 
@@ -77,7 +78,7 @@
 
                             <p:outputLabel value="ISBN"/>
                             <p:inputText value="#{controleLivro.objeto.isbn}"
-                                         size="5" readonly="true"/>
+                                         size="13" readonly="true"/>
 
                             <p:outputLabel value="Titulo" for="txtTitulo"/>
                             <p:inputText id="txtTitulo"
@@ -87,11 +88,13 @@
                             <p:outputLabel value="Resumo" for="txtResumo"/>
                             <p:inputText id="txtResumo"
                                          value="#{controleLivro.objeto.resumo}"
-                                         size="3" maxlength="2"/>                            
-                            <p:outputLabel value="Editora" for="txtEditora"/>
+                                         size="50"
+                                         placeholder="Obrigatório"/>                          
+<!--                            <p:outputLabel value="Editora" for="txtEditora"/>
                             <p:inputText id="txtEditora"
                                          value="#{controleLivro.objeto.editora}"
-                                         size="3" maxlength="2"/>                            
+                                         size="50" maxlength="50"
+                                         placeholder="Obrigatório"/>                         
                             <p:outputLabel value="DataPublicacao" for="txtdataPublicacao"/>
                             <p:inputText id="txtDataPublicacao"
                                          value="#{controleLivro.objeto.dataPublicacao}"
@@ -105,17 +108,19 @@
                                          value="#{controleLivro.objeto.numeroPaginas}"
                                          size="3" maxlength="2"/>                            
                             <p:outputLabel value="Ativo" for="txtAtivo"/>
-                            <p:inputText id="txtAtivo"
-                                         value="#{controleLivro.objeto.ativo}"
-                                         size="3" maxlength="2"/>                            
+                            <p:selectBooleanCheckbox id="selectAtivo"
+                                                     value="#{controleLivro.objeto.ativo}"/>
+
                             <p:outputLabel value="DataCadastro" for="txtDataCadastro"/>
-                            <p:inputText id="txtDataCadastro"
-                                         value="#{controleLivro.objeto.dataCadastro}"
-                                         size="3" maxlength="2"/>                            
+                            <p:calendar id="txtDataCadastro" 
+                                        value="#{controleLivro.objeto.dataCadastro}"
+                                        mask="dd/MM/yyyy" navigator="true">
+                                <f:converter converterId="converterCalendar"/>
+                            </p:calendar>
                             <p:outputLabel value="Valor" for="txtValor"/>
                             <p:inputText id="txtValor"
                                          value="#{controleLivro.objeto.valor}"
-                                         size="3" maxlength="2"/>                            
+                                         size="3" maxlength="2"/>                            -->
                         </p:panelGrid>
                     </div>
                     <p:panel>
