@@ -8,12 +8,10 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-
 @FacesConverter(value = "converterCalendar")
-public class ConverterCalendar implements Serializable, Converter{
-    
+public class ConverterCalendar implements Serializable, Converter {
+
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    
 
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
@@ -21,14 +19,14 @@ public class ConverterCalendar implements Serializable, Converter{
             Calendar retorno = Calendar.getInstance();
             retorno.setTime(sdf.parse(string));
             return retorno;
-        } catch (Exception e){
+        } catch (Exception e) {
             return null;
         }
     }
 
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object t) {
-        if (t == null){
+        if (t == null) {
             return null;
         }
         Calendar obj = (Calendar) t;

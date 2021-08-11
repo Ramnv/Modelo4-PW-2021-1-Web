@@ -21,8 +21,8 @@
                                  oncomplete="PF('dlg').show();"/>
                 <p:dataTable value="#{controleLivro.dao.listaObjetos}" var="obj"
                              id="listagem">
-                    <p:column headerText="ISBN">
-                        <p:outputLabel value="#{obj.ISBN}"/>
+                    <p:column headerText="isbn">
+                        <p:outputLabel value="#{obj.isbn}"/>
                     </p:column>
                     <p:column headerText="Titulo">
                         <p:outputLabel value="#{obj.titulo}"/>
@@ -30,27 +30,6 @@
                     <p:column headerText="Resumo">
                         <p:outputLabel value="#{obj.resumo}"/>
                     </p:column>   
-                    <!--                    <p:column headerText="Editora">
-                                            <p:outputLabel value="#{obj.editora}"/>
-                                        </p:column>   
-                                        <p:column headerText="DataPublicacao">
-                                            <p:outputLabel value="#{obj.data_publicacao}"/>
-                                        </p:column>   
-                                        <p:column headerText="CodigoBarras">
-                                            <p:outputLabel value="#{obj.codigo_barras}"/>
-                                        </p:column>   
-                                        <p:column headerText="NumeroPaginas">
-                                            <p:outputLabel value="#{obj.numero_paginas}"/>
-                                        </p:column>   
-                                        <p:column headerText="Ativo">
-                                            <p:outputLabel value="#{obj.ativo}"/>
-                                        </p:column>   
-                                        <p:column headerText="DataCadastro">
-                                            <p:outputLabel value="#{obj.data_cadastro}"/>
-                                        </p:column>   
-                                        <p:column headerText="Valor">
-                                            <p:outputLabel value="#{obj.valor}"/>
-                                        </p:column>   -->
                     <p:column headerText="Ações">
                         <div align="center">
                             <p:commandButton actionListener="#{controleLivro.alterar(obj.isbn)}" 
@@ -59,7 +38,7 @@
                                              update="formEdicao"
                                              process="@this"
                                              oncomplete="PF('dlg').show();"/>
-                            <p:commandButton actionListener="#{controleLivro.excluir(obj.ISBN)}"
+                            <p:commandButton actionListener="#{controleLivro.excluir(obj.isbn)}"
                                              icon="pi pi-trash"
                                              title="Excluir"
                                              update="formListagem"
@@ -76,8 +55,8 @@
                     <div align="center">
                         <p:panelGrid columns="2">
 
-                            <p:outputLabel value="ISBN"/>
-                            <p:inputText value="#{controleLivro.objeto.ISBN}"
+                            <p:outputLabel value="isbn"/>
+                            <p:inputText value="#{controleLivro.objeto.isbn}"
                                          size="13" readonly="true"/>
 
                             <p:outputLabel value="Titulo" for="txtTitulo"/>
@@ -90,37 +69,6 @@
                                          value="#{controleLivro.objeto.resumo}"
                                          size="50"
                                          placeholder="Obrigatório"/>                          
-<!--                            <p:outputLabel value="Editora" for="txtEditora"/>
-                            <p:inputText id="txtEditora"
-                                         value="#{controleLivro.objeto.editora}"
-                                         size="50" maxlength="50"
-                                         placeholder="Obrigatório"/>                         
-                            <p:outputLabel value="DataPublicacao" for="txtdataPublicacao"/>
-                            <p:inputText id="txtDataPublicacao"
-                                         value="#{controleLivro.objeto.dataPublicacao}"
-                                         size="3" maxlength="2"/>                            
-                            <p:outputLabel value="CodigoBarras" for="txtCodigoBarras"/>
-                            <p:inputText id="txtCodigoBarras"
-                                         value="#{controleLivro.objeto.codigoBarras}"
-                                         size="3" maxlength="2"/>                            
-                            <p:outputLabel value="NumeroPaginas" for="txtNumeroPaginas"/>
-                            <p:inputText id="txtNumeroPaginas"
-                                         value="#{controleLivro.objeto.numeroPaginas}"
-                                         size="3" maxlength="2"/>                            
-                            <p:outputLabel value="Ativo" for="txtAtivo"/>
-                            <p:selectBooleanCheckbox id="selectAtivo"
-                                                     value="#{controleLivro.objeto.ativo}"/>
-
-                            <p:outputLabel value="DataCadastro" for="txtDataCadastro"/>
-                            <p:calendar id="txtDataCadastro" 
-                                        value="#{controleLivro.objeto.dataCadastro}"
-                                        mask="dd/MM/yyyy" navigator="true">
-                                <f:converter converterId="converterCalendar"/>
-                            </p:calendar>
-                            <p:outputLabel value="Valor" for="txtValor"/>
-                            <p:inputText id="txtValor"
-                                         value="#{controleLivro.objeto.valor}"
-                                         size="3" maxlength="2"/>                            -->
                         </p:panelGrid>
                     </div>
                     <p:panel>
