@@ -34,19 +34,19 @@
                         <p:outputLabel value="#{obj.editora}"/>
                     </p:column>   
                     <p:column headerText="DataPublicacao">
-                        <p:outputLabel value="#{obj.data_publicacao}"/>
+                        <p:outputLabel value="#{obj.dataPublicacao}"/>
                     </p:column>   
                     <p:column headerText="CodigoBarras">
-                        <p:outputLabel value="#{obj.codigo_barras}"/>
+                        <p:outputLabel value="#{obj.codigoBarras}"/>
                     </p:column>   
                     <p:column headerText="NumeroPaginas">
-                        <p:outputLabel value="#{obj.numero_paginas}"/>
+                        <p:outputLabel value="#{obj.numeroPaginas}"/>
                     </p:column>   
                     <p:column headerText="Ativo">
                         <p:outputLabel value="#{obj.ativo}"/>
                     </p:column>   
                     <p:column headerText="DataCadastro">
-                        <p:outputLabel value="#{obj.data_cadastro}"/>
+                        <p:outputLabel value="#{obj.dataCadastro}"/>
                     </p:column>   
                     <p:column headerText="Valor">
                         <p:outputLabel value="#{obj.valor}"/>
@@ -96,9 +96,10 @@
                                          size="50" maxlength="50"
                                          placeholder="Obrigatório"/>                         
                             <p:outputLabel value="DataPublicacao" for="txtdataPublicacao"/>
-                            <p:inputText id="txtDataPublicacao"
-                                         value="#{controleLivro.objeto.dataPublicacao}"
-                                         size="3" maxlength="2"/>                            
+                            <p:calendar id="txtDataPublicacao"
+                                        value="#{controleLivro.objeto.dataPublicacao}"
+                                        mask="dd/MM/yyyy" navigator="true">     
+                            </p:calendar>
                             <p:outputLabel value="CodigoBarras" for="txtCodigoBarras"/>
                             <p:inputText id="txtCodigoBarras"
                                          value="#{controleLivro.objeto.codigoBarras}"
@@ -115,7 +116,7 @@
                             <p:calendar id="txtDataCadastro" 
                                         value="#{controleLivro.objeto.dataCadastro}"
                                         mask="dd/MM/yyyy" navigator="true">
-                                <f:converter converterId="converterCalendar"/>
+                                <!--<f:converter converterId="converterCalendar"/>-->
                             </p:calendar>
                             <p:outputLabel value="Valor" for="txtValor"/>
                             <p:inputText id="txtValor"

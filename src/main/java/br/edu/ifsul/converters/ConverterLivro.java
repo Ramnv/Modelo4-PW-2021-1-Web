@@ -1,6 +1,6 @@
 package br.edu.ifsul.converters;
 
-import br.edu.ifsul.modelo04.Idioma;
+import br.edu.ifsul.modelo04.Livro;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.component.UIComponent;
@@ -10,28 +10,30 @@ import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-@Named(value = "converterIdioma")
+@Named(value = "converterLivro")
 @RequestScoped
-public class ConverterIdioma implements Serializable, Converter {
+public class ConverterLivro implements Serializable, Converter {
 
     @PersistenceContext(unitName = "PW-2021-1-WebPU")
-    protected EntityManager em;
+    private EntityManager em;
 
+    // converter o que vem da tela para um objeto
     @Override
     public Object getAsObject(FacesContext fc, UIComponent uic, String string) {
         if (string == null || string.equals("Selecione um registro")) {
             return null;
         }
-        return em.find(Idioma.class, Integer.parseInt(string));
+        return em.find(Livro.class, Integer.parseInt(string));
     }
 
+    // converte o objeto que vem do banco em uma string para tela
     @Override
     public String getAsString(FacesContext fc, UIComponent uic, Object t) {
         if (t == null) {
             return null;
         }
-        Idioma obj = (Idioma) t;
-        return obj.getId().toString();
+        Livro obj = (Livro) t;
+        return obj.getISBN().toString();
     }
 
 }
