@@ -20,6 +20,7 @@ public class IdiomaDAO<TIPO> extends DAOGenerico<Idioma> implements Serializable
         classePersistente = Idioma.class;
         listaOrdem.add(new Ordem("id", "ID", "="));
         listaOrdem.add(new Ordem("nome", "Nome", "like"));
+        listaOrdem.add(new Ordem("sigla", "Sigla", "like"));
         // definição da ordem atual
         ordemAtual = listaOrdem.get(1); // vai pegar o segundo da lista de ordens
         // criando uma instancia do conversor

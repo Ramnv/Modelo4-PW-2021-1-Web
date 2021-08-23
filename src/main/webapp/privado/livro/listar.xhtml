@@ -6,6 +6,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+    <!--An Error Occurred: Cannot find component for expression "txtdataPublicacao" referenced from "j_idt75".-->
+
     <ui:composition template="/templates/template.xhtml">
         <ui:define name="titulo">Manutenção de Livros</ui:define>
         <ui:define name="conteudo">
@@ -121,7 +123,7 @@
                         <p:panelGrid columns="2">
                             <p:outputLabel value="ISBN"/>
                             <p:inputText value="#{controleLivro.objeto.ISBN}"
-                                         size="13" readonly="true"/>
+                                         size="13" maxlength="13"/>
                             <p:outputLabel value="Titulo" for="txtTitulo"/>
                             <p:inputText id="txtTitulo"
                                          value="#{controleLivro.objeto.titulo}"
@@ -137,7 +139,7 @@
                                          value="#{controleLivro.objeto.editora}"
                                          size="50" maxlength="50"
                                          placeholder="Obrigatório"/>                         
-                            <p:outputLabel value="DataPublicacao" for="txtdataPublicacao"/>
+                            <p:outputLabel value="DataPublicacao" for="txtDataPublicacao"/>
                             <p:calendar id="txtDataPublicacao"
                                         value="#{controleLivro.objeto.dataPublicacao}"
                                         mask="dd/MM/yyyy" navigator="true">     
@@ -150,15 +152,14 @@
                             <p:inputText id="txtNumeroPaginas"
                                          value="#{controleLivro.objeto.numeroPaginas}"
                                          size="5" maxlength="5"/>                            
-                            <p:outputLabel value="Ativo" for="txtAtivo"/>
+                            <p:outputLabel value="Ativo" for="selectAtivo"/>
                             <p:selectBooleanCheckbox id="selectAtivo"
                                                      value="#{controleLivro.objeto.ativo}"/>
-
                             <p:outputLabel value="DataCadastro" for="txtDataCadastro"/>
                             <p:calendar id="txtDataCadastro" 
                                         value="#{controleLivro.objeto.dataCadastro}"
                                         mask="dd/MM/yyyy" navigator="true">
-                                <!--<f:converter converterId="converterCalendar"/>-->
+                                <f:converter converterId="converterCalendar"/>
                             </p:calendar>
                             <p:outputLabel value="Valor" for="txtValor"/>
                             <p:inputText id="txtValor"
