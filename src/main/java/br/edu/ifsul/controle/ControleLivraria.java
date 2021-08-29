@@ -1,11 +1,7 @@
 package br.edu.ifsul.controle;
 
-import br.edu.ifsul.dao.FormatoDAO;
-import br.edu.ifsul.dao.IdiomaDAO;
-import br.edu.ifsul.dao.LivroDAO;
-import br.edu.ifsul.modelo04.Formato;
-import br.edu.ifsul.modelo04.Idioma;
-import br.edu.ifsul.modelo04.Livro;
+import br.edu.ifsul.dao.AutorDAO;
+import br.edu.ifsul.modelo04.Autor;
 import br.edu.ifsul.util.Util;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -16,27 +12,24 @@ import javax.inject.Named;
  *
  * @author rvelasco
  */
-@Named(value = "controleLivro")
+@Named(value = "controleAutor")
 @ViewScoped
-public class ControleLivro implements Serializable {
+public class ControleLivraria implements Serializable {
 
     @EJB
-    private LivroDAO<Livro> dao;
-    private Livro objeto;
-    private IdiomaDAO<Idioma> daoIdioma;
-    private FormatoDAO<Formato> daoFormato;
-    
+    private AutorDAO<Autor> dao;
+    private Autor objeto;
 
-    public ControleLivro() {
+    public ControleLivraria() {
 
     }
 
     public String listar() {
-        return "/privado/livro/listar?faces-redirect=true";
+        return "/privado/autor/listar?faces-redirect=true";
     }
 
     public void novo() {
-        objeto = new Livro();
+        objeto = new Autor();
     }
 
     public void alterar(Object id) {
@@ -59,7 +52,7 @@ public class ControleLivro implements Serializable {
 
     public void salvar() {
         try {
-            if (objeto.getISBN()== null) {
+            if (objeto.getId() == null) {
                 dao.persist(objeto);
             } else {
                 dao.merge(objeto);
@@ -70,19 +63,19 @@ public class ControleLivro implements Serializable {
         }
     }
 
-    public LivroDAO<Livro> getDao() {
+    public AutorDAO<Autor> getDao() {
         return dao;
     }
 
-    public void setDao(LivroDAO<Livro> dao) {
+    public void setDao(AutorDAO<Autor> dao) {
         this.dao = dao;
     }
 
-    public Livro getObjeto() {
+    public Autor getObjeto() {
         return objeto;
     }
 
-    public void setObjeto(Livro objeto) {
+    public void setObjeto(Autor objeto) {
         this.objeto = objeto;
     }
 
