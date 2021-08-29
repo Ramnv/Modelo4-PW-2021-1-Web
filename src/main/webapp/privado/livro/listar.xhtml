@@ -6,7 +6,8 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <!--An Error Occurred: Cannot find component for expression "txtdataPublicacao" referenced from "j_idt75".-->
+    <!--Error
+Erro ao persistir objeto: Validation failed for classes [br.edu.ifsul.modelo04.Livro] during persist time for groups [javax.validation.groups.Default, ] List of constraint violations:[ ConstraintViolationImpl{interpolatedMessage='O catalogo deve ser informado', propertyPath=catalogo, rootBeanClass=class br.edu.ifsul.modelo04.Livro, messageTemplate='O catalogo deve ser informado'} ConstraintViolationImpl{interpolatedMessage='O formato deve ser informado', propertyPath=formato, rootBeanClass=class br.edu.ifsul.modelo04.Livro, messageTemplate='O formato deve ser informado'} ConstraintViolationImpl{interpolatedMessage='O usuário deve ser informado', propertyPath=idioma, rootBeanClass=class br.edu.ifsul.modelo04.Livro, messageTemplate='O usuário deve ser informado'} ]-->
 
     <ui:composition template="/templates/template.xhtml">
         <ui:define name="titulo">Manutenção de Livros</ui:define>
@@ -115,68 +116,7 @@
                     </p:column>
                 </p:dataTable>                
             </h:form>
-            <p:dialog header="Edição" widgetVar="dlg" resizable="false"
-                      modal="modal" width="50%" height="100%">
-                <h:form id="formEdicao" prependId="false">
-                    <p:growl id="growl"/>
-                    <div align="center">
-                        <p:panelGrid columns="2">
-                            <p:outputLabel value="ISBN"/>
-                            <p:inputText value="#{controleLivro.objeto.ISBN}"
-                                         size="13" maxlength="13"/>
-                            <p:outputLabel value="Titulo" for="txtTitulo"/>
-                            <p:inputText id="txtTitulo"
-                                         value="#{controleLivro.objeto.titulo}"
-                                         size="50" maxlength="50"
-                                         placeholder="Obrigatório"/>
-                            <p:outputLabel value="Resumo" for="txtResumo"/>
-                            <p:inputText id="txtResumo"
-                                         value="#{controleLivro.objeto.resumo}"
-                                         size="50"
-                                         placeholder="Obrigatório"/>                          
-                            <p:outputLabel value="Editora" for="txtEditora"/>
-                            <p:inputText id="txtEditora"
-                                         value="#{controleLivro.objeto.editora}"
-                                         size="50" maxlength="50"
-                                         placeholder="Obrigatório"/>                         
-                            <p:outputLabel value="DataPublicacao" for="txtDataPublicacao"/>
-                            <p:calendar id="txtDataPublicacao"
-                                        value="#{controleLivro.objeto.dataPublicacao}"
-                                        mask="dd/MM/yyyy" navigator="true">     
-                            </p:calendar>
-                            <p:outputLabel value="CodigoBarras" for="txtCodigoBarras"/>
-                            <p:inputText id="txtCodigoBarras"
-                                         value="#{controleLivro.objeto.codigoBarras}"
-                                         size="13" maxlength="13"/>                            
-                            <p:outputLabel value="NumeroPaginas" for="txtNumeroPaginas"/>
-                            <p:inputText id="txtNumeroPaginas"
-                                         value="#{controleLivro.objeto.numeroPaginas}"
-                                         size="5" maxlength="5"/>                            
-                            <p:outputLabel value="Ativo" for="selectAtivo"/>
-                            <p:selectBooleanCheckbox id="selectAtivo"
-                                                     value="#{controleLivro.objeto.ativo}"/>
-                            <p:outputLabel value="DataCadastro" for="txtDataCadastro"/>
-                            <p:calendar id="txtDataCadastro" 
-                                        value="#{controleLivro.objeto.dataCadastro}"
-                                        mask="dd/MM/yyyy" navigator="true">
-                                <f:converter converterId="converterCalendar"/>
-                            </p:calendar>
-                            <p:outputLabel value="Valor" for="txtValor"/>
-                            <p:inputText id="txtValor"
-                                         value="#{controleLivro.objeto.valor}"
-                                         size="3" maxlength="2"/>                            
-                        </p:panelGrid>
-                    </div>
-                    <p:panel>
-                        <div align="center">
-                            <p:commandButton value="Salvar" icon="pi pi-save"
-                                             actionListener="#{controleLivro.salvar()}"
-                                             update="formEdicao formListagem"
-                                             oncomplete="if(!args.validationFailed){PF('dlg').hide();}"/>
-                        </div>
-                    </p:panel>
-                </h:form>    
-            </p:dialog>
+            <ui:include src="formulario.xhtml"/>
         </ui:define>
     </ui:composition>
 </html>

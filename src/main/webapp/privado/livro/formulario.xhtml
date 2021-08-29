@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <p:dialog header="Edição" widgetVar="dlg" resizable="false"
+              modal="modal" width="50%" height="100%">
+        <h:form id="formEdicao" prependId="false">
+            <p:growl id="growl"/>
+            <p:tabView id="tab">
+                <p:tab title="Dados Principais">
+                    <div align="center">
+                        <p:panelGrid columns="2">
+                            <p:outputLabel value="ISBN"/>
+                            <p:inputText value="#{controleLivro.objeto.ISBN}"
+                                         size="13" maxlength="13"
+                                         placeholder="Obrigatório"/>
+                            <p:outputLabel value="Titulo" for="txtTitulo"/>
+                            <p:inputText id="txtTitulo"
+                                         value="#{controleLivro.objeto.titulo}"
+                                         size="50" maxlength="50"
+                                         placeholder="Obrigatório"/>
+                            <!--                            <p:outputLabel value="Resumo" for="txtResumo"/>
+                                                        <p:inputText id="txtResumo"
+                                                                     value="#{controleLivro.objeto.resumo}"
+                                                                     size="50"
+                                                                     placeholder="Obrigatório"/>                          -->
+                            <p:outputLabel value="Editora" for="txtEditora"/>
+                            <p:inputText id="txtEditora"
+                                         value="#{controleLivro.objeto.editora}"
+                                         size="50" maxlength="50"
+                                         placeholder="Obrigatório"/>                         
+                            <p:outputLabel value="DataPublicacao" for="txtDataPublicacao"/>
+                            <p:calendar id="txtDataPublicacao"
+                                        value="#{controleLivro.objeto.dataPublicacao}"
+                                        mask="true" pattern="dd/MM/yyyy" navigator="true" size="10">
+                                <f:converter converterId="converterCalendar"/>
+                            </p:calendar>
+                            <p:outputLabel value="CodigoBarras" for="txtCodigoBarras"/>
+                            <p:inputText id="txtCodigoBarras"
+                                         value="#{controleLivro.objeto.codigoBarras}"
+                                         size="13" maxlength="13"/>                            
+                            <p:outputLabel value="NumeroPaginas" for="txtNumeroPaginas"/>
+                            <p:inputText id="txtNumeroPaginas"
+                                         value="#{controleLivro.objeto.numeroPaginas}"
+                                         size="5" maxlength="5"/>                            
+                            <p:outputLabel value="Ativo" for="selectAtivo"/>
+                            <p:selectBooleanCheckbox id="selectAtivo"
+                                                     value="#{controleLivro.objeto.ativo}"/>
+                            <p:outputLabel value="DataCadastro" for="txtDataCadastro"/>
+                            <p:calendar id="txtDataCadastro" 
+                                        value="#{controleLivro.objeto.dataCadastro}"
+                                        mask="true" pattern="dd/MM/yyyy" navigator="true">
+                                <f:converter converterId="converterCalendar"/>
+                            </p:calendar>
+                            <p:outputLabel value="Valor" for="txtValor"/>
+                            <p:inputText id="txtValor"
+                                         value="#{controleLivro.objeto.valor}"
+                                         size="3" maxlength="2"/>                            
+                        </p:panelGrid>
+                    </div>                    
+                </p:tab>
+                <p:tab title="Resumo">
+                    <p:textEditor value="#{controleLivro.objeto.resumo}"
+                                  secure="false" height="200"/>
+                </p:tab>              
+                <!--                <p:tab title="Jogadores">
+                                    <p:dataTable value="#{controleLivro.objeto.livroes}"
+                                                 var="livro" rowIndexVar="idxJogador"
+                                                 id="listaJogadores">
+                                        <f:facet name="header">
+                                            <p:commandButton  value="Novo Jogador"
+                                                              actionListener="#{controleLivro.novoJogador()}"
+                                                              update=":formJogador"
+                                                              icon="pi pi-plus"
+                                                              process="@this"
+                                                              oncomplete="PF('dlgJogador').show();"/>                                              
+                                        </f:facet>
+                                        <p:column headerText="ID">
+                                            <p:outputLabel value="#{livro.id}"/>
+                                        </p:column>
+                                        <p:column headerText="Nome">
+                                            <p:outputLabel value="#{livro.nome}"/>
+                                        </p:column>                        
+                                        <p:column headerText="CPF">
+                                            <p:outputLabel value="#{livro.cpf}"/>
+                                        </p:column>                        
+                                        <p:column headerText="Nascimento">
+                                            <p:outputLabel value="#{livro.nascimento}">
+                                                <f:converter converterId="converterCalendar"/>
+                                            </p:outputLabel>
+                                        </p:column>
+                                        <p:column headerText="Ações">
+                                            <p:commandButton icon="pi pi-pencil"
+                                                             actionListener="#{controleLivro.alterarJogador(idxJogador)}"
+                                                             process="@this"
+                                                             update=":formJogador"
+                                                             oncomplete="PF('dlgJogador').show();"/>
+                                            <p:commandButton icon="pi pi-trash"
+                                                             actionListener="#{controleLivro.removerJogador(idxJogador)}"
+                                                             process="@this"
+                                                             update="tab:listaJogadores growl"
+                                                             onclick="if (!confirm('Confirma a exclusão do livro?'))
+                                                                         return false"/>
+                                        </p:column>
+                                    </p:dataTable>
+                                </p:tab>                -->
+            </p:tabView>
+            <p:panel>
+                <div align="center">
+                    <p:commandButton value="Salvar" icon="pi pi-save"
+                                     actionListener="#{controleLivro.salvar()}"
+                                     update="formEdicao formListagem"
+                                     oncomplete="if(!args.validationFailed){PF('dlg').hide();}"/>
+                </div>
+            </p:panel>
+        </h:form>    
+    </p:dialog>
+    <p:dialog header="Edição de Livro" widgetVar="dlgLivro" resizable="false"
+              modal="true">
+        <h:form id="formLivro">
+            <p:growl/>
+            <p:panelGrid columns="2">
+                <f:facet name="footer">
+                    <div align="center">
+                        <p:commandButton value="Salvar" icon="pi pi-save"
+                                         actionListener="#{controleLivro.salvarLivro()}"
+                                         update="tab:listaLivros growl @form"
+                                         process="@form"
+                                         oncomplete="if(!args.validationFailed){PF('dlgLivro').hide();}"/>
+                    </div>
+                </f:facet>
+                <p:outputLabel value="ISBN"/>
+                <p:inputText value="#{controleLivro.livro.ISBN}" readonly="true"/>
+                <p:outputLabel value="Titulo" for="txtTitulo"/>
+                <p:inputText value="#{controleLivro.livro.titulo}" id="txtTitulo"
+                             placeholder="Obrigatório" size="50" maxlength="50"/>
+                <p:outputLabel value="Resumo" for="txtResumo"/>
+                <p:inputText value="#{controleLivro.livro.resumo}" id="txtResumo"
+                             placeholder="Obrigatório" size="50" maxlength="50"/>
+                <p:outputLabel value="Editora" for="txtEditora"/>
+                <p:inputText value="#{controleLivro.livro.editora}" id="txtEditora"
+                             placeholder="Obrigatório" size="50" maxlength="50"/>
+<!--                <p:outputLabel value="CPF" for="txtCPF"/>
+                <p:inputMask id="txtCPF" value="#{controleLivro.livro.cpf}"
+                             size="14" maxlength="14" mask="999.999.999-99"/>-->
+                <p:outputLabel value="DataPublicacao" for="txtDataPublicacao"/>
+                <p:calendar id="txtDataPublicacao"
+                            value="#{controleLivro.livro.dataPublicacao}"
+                            mask="true"
+                            pattern="dd/MM/yyyy" navigator="true"
+                            size="10">
+                    <f:converter converterId="converterCalendar"/>
+                </p:calendar>  
+<!--                <p:outputLabel value="Peso" for="txtPeso"/>
+                <p:inputNumber id="txtPeso" value="#{controleLivro.livro.peso}"
+                               thousandSeparator="" decimalSeparator="."
+                               decimalPlaces="2" size="10"/>
+                <p:outputLabel value="Altura" for="txtAltura"/>
+                <p:inputNumber id="txtAltura" value="#{controleLivro.livro.altura}"
+                               thousandSeparator="" decimalSeparator="."
+                               decimalPlaces="2" size="10"/> 
+                <p:outputLabel value="Posição" for="selectPosicao"/>
+                <p:selectOneMenu value="#{controleLivro.livro.posicao}"
+                                 id="selectPosicao"
+                                 filter="true" filterMatchMode="startsWith">
+                    <f:converter binding="#{converterPosicao}"/>
+                    <f:selectItem itemLabel="Selecione um registro"
+                                  noSelectionOption="true"/>
+                    <f:selectItems value="#{controleLivro.daoPosicao.listaTodos}"
+                                   var="pos" itemLabel="#{pos.nome}"/>
+                </p:selectOneMenu>                   -->
+            </p:panelGrid>
+        </h:form>        
+    </p:dialog>
+
+</html>
