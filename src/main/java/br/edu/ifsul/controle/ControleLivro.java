@@ -1,8 +1,10 @@
 package br.edu.ifsul.controle;
 
+import br.edu.ifsul.dao.CatalogoDAO;
 import br.edu.ifsul.dao.FormatoDAO;
 import br.edu.ifsul.dao.IdiomaDAO;
 import br.edu.ifsul.dao.LivroDAO;
+import br.edu.ifsul.modelo04.Catalogo;
 import br.edu.ifsul.modelo04.Formato;
 import br.edu.ifsul.modelo04.Idioma;
 import br.edu.ifsul.modelo04.Livro;
@@ -23,9 +25,12 @@ public class ControleLivro implements Serializable {
     @EJB
     private LivroDAO<Livro> dao;
     private Livro objeto;
+    @EJB
     private IdiomaDAO<Idioma> daoIdioma;
+    @EJB
     private FormatoDAO<Formato> daoFormato;
-    
+    @EJB
+    private CatalogoDAO<Catalogo> daoCatalogo;
 
     public ControleLivro() {
 
@@ -59,7 +64,7 @@ public class ControleLivro implements Serializable {
 
     public void salvar() {
         try {
-            if (objeto.getISBN()== null) {
+            if (objeto.getISBN() == null) {
                 dao.persist(objeto);
             } else {
                 dao.merge(objeto);

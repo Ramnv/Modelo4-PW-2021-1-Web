@@ -1,7 +1,8 @@
 package br.edu.ifsul.controle;
 
-import br.edu.ifsul.dao.AutorDAO;
-import br.edu.ifsul.modelo04.Autor;
+import br.edu.ifsul.dao.CatalogoDAO;
+import br.edu.ifsul.modelo04.Catalogo;
+import br.edu.ifsul.modelo04.Livro;
 import br.edu.ifsul.util.Util;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -12,24 +13,44 @@ import javax.inject.Named;
  *
  * @author rvelasco
  */
-@Named(value = "controleAutor")
+@Named(value = "controleCatalogo")
 @ViewScoped
 public class ControleCatalogo implements Serializable {
 
     @EJB
-    private AutorDAO<Autor> dao;
-    private Autor objeto;
+    private CatalogoDAO<Catalogo> dao;
+    private Catalogo objeto;
+
+    private Livro livro;
 
     public ControleCatalogo() {
 
     }
 
     public String listar() {
-        return "/privado/autor/listar?faces-redirect=true";
+        return "/privado/catalogo/listar?faces-redirect=true";
+    }
+
+    public void novoLivro() {
+        livro = new Livro();
+    }
+
+    public void alterarLivro(int index) {
+        livro = objeto.getLivros().get(index);
+    }
+
+    public void salvarLivro() {
+        objeto.adicionarLivro(livro);
+        Util.mensagemInformacao("Livro adicionado ou atualizado com sucesso");
+    }
+
+    public void removerLivro(int index) {
+        objeto.removerLivro(index);
+        Util.mensagemInformacao("Livro removido com sucesso!");
     }
 
     public void novo() {
-        objeto = new Autor();
+        objeto = new Catalogo();
     }
 
     public void alterar(Object id) {
@@ -63,19 +84,19 @@ public class ControleCatalogo implements Serializable {
         }
     }
 
-    public AutorDAO<Autor> getDao() {
+    public CatalogoDAO<Catalogo> getDao() {
         return dao;
     }
 
-    public void setDao(AutorDAO<Autor> dao) {
+    public void setDao(CatalogoDAO<Catalogo> dao) {
         this.dao = dao;
     }
 
-    public Autor getObjeto() {
+    public Catalogo getObjeto() {
         return objeto;
     }
 
-    public void setObjeto(Autor objeto) {
+    public void setObjeto(Catalogo objeto) {
         this.objeto = objeto;
     }
 

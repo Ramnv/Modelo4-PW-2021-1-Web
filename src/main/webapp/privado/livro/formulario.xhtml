@@ -132,45 +132,47 @@
                     </div>
                 </f:facet>
                 <p:outputLabel value="ISBN"/>
-                <p:inputText value="#{controleLivro.livro.ISBN}" readonly="true"/>
+                <p:inputText value="#{controleLivro.objeto.ISBN}" readonly="true"/>
                 <p:outputLabel value="Titulo" for="txtTitulo"/>
-                <p:inputText value="#{controleLivro.livro.titulo}" id="txtTitulo"
+                <p:inputText value="#{controleLivro.objeto.titulo}" id="txtTitulo"
                              placeholder="Obrigatório" size="50" maxlength="50"/>
                 <p:outputLabel value="Resumo" for="txtResumo"/>
-                <p:inputText value="#{controleLivro.livro.resumo}" id="txtResumo"
+                <p:inputText value="#{controleLivro.objeto.resumo}" id="txtResumo"
                              placeholder="Obrigatório" size="50" maxlength="50"/>
                 <p:outputLabel value="Editora" for="txtEditora"/>
-                <p:inputText value="#{controleLivro.livro.editora}" id="txtEditora"
+                <p:inputText value="#{controleLivro.objeto.editora}" id="txtEditora"
                              placeholder="Obrigatório" size="50" maxlength="50"/>
                 <!--                <p:outputLabel value="CPF" for="txtCPF"/>
-                                <p:inputMask id="txtCPF" value="#{controleLivro.livro.cpf}"
+                                <p:inputMask id="txtCPF" value="#{controleLivro.objeto.cpf}"
                                              size="14" maxlength="14" mask="999.999.999-99"/>-->
                 <p:outputLabel value="DataPublicacao" for="txtDataPublicacao"/>
                 <p:calendar id="txtDataPublicacao"
-                            value="#{controleLivro.livro.dataPublicacao}"
+                            value="#{controleLivro.objeto.dataPublicacao}"
                             mask="true"
                             pattern="dd/MM/yyyy" navigator="true"
                             size="10">
                     <f:converter converterId="converterCalendar"/>
-                </p:calendar>  
-                <!--                <p:outputLabel value="Peso" for="txtPeso"/>
-                                <p:inputNumber id="txtPeso" value="#{controleLivro.livro.peso}"
-                                               thousandSeparator="" decimalSeparator="."
-                                               decimalPlaces="2" size="10"/>
-                                <p:outputLabel value="Altura" for="txtAltura"/>
-                                <p:inputNumber id="txtAltura" value="#{controleLivro.livro.altura}"
-                                               thousandSeparator="" decimalSeparator="."
-                                               decimalPlaces="2" size="10"/> 
-                                <p:outputLabel value="Posição" for="selectPosicao"/>
-                                <p:selectOneMenu value="#{controleLivro.livro.posicao}"
-                                                 id="selectPosicao"
-                                                 filter="true" filterMatchMode="startsWith">
-                                    <f:converter binding="#{converterPosicao}"/>
-                                    <f:selectItem itemLabel="Selecione um registro"
-                                                  noSelectionOption="true"/>
-                                    <f:selectItems value="#{controleLivro.daoPosicao.listaTodos}"
-                                                   var="pos" itemLabel="#{pos.nome}"/>
-                                </p:selectOneMenu>                   -->
+                </p:calendar>
+                
+<!--                // Terminar-->
+<!--                <p:outputLabel value="Peso" for="txtPeso"/>
+                <p:inputNumber id="txtPeso" value="#{controleLivro.objeto.peso}"
+                               thousandSeparator="" decimalSeparator="."
+                               decimalPlaces="2" size="10"/>
+                <p:outputLabel value="Altura" for="txtAltura"/>
+                <p:inputNumber id="txtAltura" value="#{controleLivro.objeto.altura}"
+                               thousandSeparator="" decimalSeparator="."
+                               decimalPlaces="2" size="10"/> 
+                <p:outputLabel value="Posição" for="selectPosicao"/>
+                <p:selectOneMenu value="#{controleLivro.objeto.posicao}"
+                                 id="selectPosicao"
+                                 filter="true" filterMatchMode="startsWith">
+                    <f:converter binding="#{converterPosicao}"/>
+                    <f:selectItem itemLabel="Selecione um registro"
+                                  noSelectionOption="true"/>
+                    <f:selectItems value="#{controleLivro.daoPosicao.listaTodos}"
+                                   var="pos" itemLabel="#{pos.nome}"/>
+                </p:selectOneMenu>                   -->
             </p:panelGrid>
         </h:form>        
     </p:dialog>

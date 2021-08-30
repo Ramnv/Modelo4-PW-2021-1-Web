@@ -1,7 +1,9 @@
 package br.edu.ifsul.controle;
 
-import br.edu.ifsul.dao.AutorDAO;
-import br.edu.ifsul.modelo04.Autor;
+import br.edu.ifsul.dao.LivrariaDAO;
+import br.edu.ifsul.dao.LivrariaDAO;
+import br.edu.ifsul.modelo04.Livraria;
+import br.edu.ifsul.modelo04.Livraria;
 import br.edu.ifsul.util.Util;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -12,13 +14,13 @@ import javax.inject.Named;
  *
  * @author rvelasco
  */
-@Named(value = "controleAutor")
+@Named(value = "controleLivraria")
 @ViewScoped
 public class ControleLivraria implements Serializable {
 
     @EJB
-    private AutorDAO<Autor> dao;
-    private Autor objeto;
+    private LivrariaDAO<Livraria> dao;
+    private Livraria objeto;
 
     public ControleLivraria() {
 
@@ -29,7 +31,7 @@ public class ControleLivraria implements Serializable {
     }
 
     public void novo() {
-        objeto = new Autor();
+        objeto = new Livraria();
     }
 
     public void alterar(Object id) {
@@ -63,19 +65,19 @@ public class ControleLivraria implements Serializable {
         }
     }
 
-    public AutorDAO<Autor> getDao() {
+    public LivrariaDAO<Livraria> getDao() {
         return dao;
     }
 
-    public void setDao(AutorDAO<Autor> dao) {
+    public void setDao(LivrariaDAO<Livraria> dao) {
         this.dao = dao;
     }
 
-    public Autor getObjeto() {
+    public Livraria getObjeto() {
         return objeto;
     }
 
-    public void setObjeto(Autor objeto) {
+    public void setObjeto(Livraria objeto) {
         this.objeto = objeto;
     }
 
