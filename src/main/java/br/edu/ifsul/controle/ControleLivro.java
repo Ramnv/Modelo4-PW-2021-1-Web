@@ -3,11 +3,13 @@ package br.edu.ifsul.controle;
 import br.edu.ifsul.dao.CatalogoDAO;
 import br.edu.ifsul.dao.FormatoDAO;
 import br.edu.ifsul.dao.IdiomaDAO;
+import br.edu.ifsul.dao.LivroBasicoDAO;
 import br.edu.ifsul.dao.LivroDAO;
 import br.edu.ifsul.modelo04.Catalogo;
 import br.edu.ifsul.modelo04.Formato;
 import br.edu.ifsul.modelo04.Idioma;
 import br.edu.ifsul.modelo04.Livro;
+import br.edu.ifsul.modelo04.LivroBasico;
 import br.edu.ifsul.util.Util;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -25,6 +27,8 @@ public class ControleLivro implements Serializable {
     @EJB
     private LivroDAO<Livro> dao;
     private Livro objeto;
+    @EJB
+    private LivroBasicoDAO<LivroBasico> daoLivroBasico;
     @EJB
     private IdiomaDAO<Idioma> daoIdioma;
     @EJB
@@ -89,6 +93,38 @@ public class ControleLivro implements Serializable {
 
     public void setObjeto(Livro objeto) {
         this.objeto = objeto;
+    }
+
+    public IdiomaDAO<Idioma> getDaoIdioma() {
+        return daoIdioma;
+    }
+
+    public void setDaoIdioma(IdiomaDAO<Idioma> daoIdioma) {
+        this.daoIdioma = daoIdioma;
+    }
+
+    public FormatoDAO<Formato> getDaoFormato() {
+        return daoFormato;
+    }
+
+    public void setDaoFormato(FormatoDAO<Formato> daoFormato) {
+        this.daoFormato = daoFormato;
+    }
+
+    public CatalogoDAO<Catalogo> getDaoCatalogo() {
+        return daoCatalogo;
+    }
+
+    public void setDaoCatalogo(CatalogoDAO<Catalogo> daoCatalogo) {
+        this.daoCatalogo = daoCatalogo;
+    }
+
+    public LivroBasicoDAO<LivroBasico> getDaoLivroBasico() {
+        return daoLivroBasico;
+    }
+
+    public void setDaoLivroBasico(LivroBasicoDAO<LivroBasico> daoLivroBasico) {
+        this.daoLivroBasico = daoLivroBasico;
     }
 
 }
