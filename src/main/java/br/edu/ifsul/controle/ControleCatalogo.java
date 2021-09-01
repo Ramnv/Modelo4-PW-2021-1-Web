@@ -1,9 +1,13 @@
 package br.edu.ifsul.controle;
 
 import br.edu.ifsul.dao.CatalogoDAO;
+import br.edu.ifsul.dao.FormatoDAO;
+import br.edu.ifsul.dao.IdiomaDAO;
 import br.edu.ifsul.dao.LivrariaDAO;
 import br.edu.ifsul.dao.LivroDAO;
 import br.edu.ifsul.modelo04.Catalogo;
+import br.edu.ifsul.modelo04.Formato;
+import br.edu.ifsul.modelo04.Idioma;
 import br.edu.ifsul.modelo04.Livraria;
 import br.edu.ifsul.modelo04.Livro;
 import br.edu.ifsul.util.Util;
@@ -23,6 +27,10 @@ public class ControleCatalogo implements Serializable {
     @EJB
     private CatalogoDAO<Catalogo> dao;
     private Catalogo objeto;
+    @EJB
+    private IdiomaDAO<Idioma> daoIdioma;
+    @EJB
+    private FormatoDAO<Formato> daoFormato;
     @EJB
     private LivroDAO<Livro> daoLivro;
     @EJB
@@ -105,6 +113,46 @@ public class ControleCatalogo implements Serializable {
 
     public void setObjeto(Catalogo objeto) {
         this.objeto = objeto;
+    }
+
+    public LivroDAO<Livro> getDaoLivro() {
+        return daoLivro;
+    }
+
+    public void setDaoLivro(LivroDAO<Livro> daoLivro) {
+        this.daoLivro = daoLivro;
+    }
+
+    public LivrariaDAO<Livraria> getDaoLivraria() {
+        return daoLivraria;
+    }
+
+    public void setDaoLivraria(LivrariaDAO<Livraria> daoLivraria) {
+        this.daoLivraria = daoLivraria;
+    }
+
+    public Livro getLivro() {
+        return livro;
+    }
+
+    public void setLivro(Livro livro) {
+        this.livro = livro;
+    }
+
+    public IdiomaDAO<Idioma> getDaoIdioma() {
+        return daoIdioma;
+    }
+
+    public void setDaoIdioma(IdiomaDAO<Idioma> daoIdioma) {
+        this.daoIdioma = daoIdioma;
+    }
+
+    public FormatoDAO<Formato> getDaoFormato() {
+        return daoFormato;
+    }
+
+    public void setDaoFormato(FormatoDAO<Formato> daoFormato) {
+        this.daoFormato = daoFormato;
     }
 
 }

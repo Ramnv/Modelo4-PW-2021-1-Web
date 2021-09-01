@@ -13,7 +13,7 @@
                     <div align="center">
                         <p:panelGrid columns="2">
                             <p:outputLabel value="ID"/>
-                            <p:inputText value="#{controleCatalogo.objeto.ID}"
+                            <p:inputText value="#{controleCatalogo.objeto.id}"
                                          size="5" readonly="true"/>
                             <p:outputLabel value="Nome" for="txtNome"/>
                             <p:inputText id="txtNome"
@@ -103,7 +103,8 @@
                     </div>
                 </f:facet>
                 <p:outputLabel value="ISBN"/>
-                <p:inputText value="#{controleCatalogo.livro.ISBN}" readonly="true"/>
+                <p:inputText value="#{controleCatalogo.livro.ISBN}" id="txtISBN"
+                             placeholder="Obrigatório" size="13" maxlength="13"/>
                 <p:outputLabel value="Titulo" for="txtTitulo"/>
                 <p:inputText value="#{controleCatalogo.livro.titulo}" id="txtTitulo"
                              placeholder="Obrigatório" size="50" maxlength="50"/>
@@ -122,7 +123,7 @@
                     <f:converter converterId="converterCalendar"/>
                 </p:calendar>
                 <p:outputLabel value="Valor" for="txtValor"/>
-                <p:inputNumber id="txtValor" value="#{controleCatalogo.livro.peso}"
+                <p:inputNumber id="txtValor" value="#{controleCatalogo.livro.valor}"
                                thousandSeparator="" decimalSeparator="."
                                decimalPlaces="2" size="10"/>
 

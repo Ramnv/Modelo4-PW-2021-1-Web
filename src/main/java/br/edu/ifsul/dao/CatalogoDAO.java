@@ -30,4 +30,11 @@ public class CatalogoDAO<TIPO> extends DAOGenerico<Catalogo> implements Serializ
         converterOrdem.setListaOrdem(listaOrdem);
     }
 
+    @Override
+    public Catalogo localizar(Object id) throws Exception {
+        Catalogo objeto = em.find(Catalogo.class, id);
+        objeto.getLivros().size();
+        return objeto;
+    }
+
 }

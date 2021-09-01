@@ -71,19 +71,18 @@
                     <p:column headerText="Nome">
                         <p:outputLabel value="#{obj.nome}"/>
                     </p:column> 
-                    <p:column headerText="Resumo">
+                    <p:column headerText="Descrição">
                         <p:outputLabel value="#{obj.descricao}"/>
-                    </p:column>   
-
+                    </p:column>
                     <p:column headerText="Ações">
                         <div align="center">
-                            <p:commandButton actionListener="#{controleCatalogo.alterar(obj.isbn)}" 
+                            <p:commandButton actionListener="#{controleCatalogo.alterar(obj.id)}" 
                                              icon="pi pi-pencil"
                                              title="Editar"
                                              update="formEdicao"
                                              process="@this"
                                              oncomplete="PF('dlg').show();"/>
-                            <p:commandButton actionListener="#{controleCatalogo.excluir(obj.ISBN)}"
+                            <p:commandButton actionListener="#{controleCatalogo.excluir(obj.id)}"
                                              icon="pi pi-trash"
                                              title="Excluir"
                                              update="formListagem"
