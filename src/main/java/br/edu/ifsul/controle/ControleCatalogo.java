@@ -1,7 +1,10 @@
 package br.edu.ifsul.controle;
 
 import br.edu.ifsul.dao.CatalogoDAO;
+import br.edu.ifsul.dao.LivrariaDAO;
+import br.edu.ifsul.dao.LivroDAO;
 import br.edu.ifsul.modelo04.Catalogo;
+import br.edu.ifsul.modelo04.Livraria;
 import br.edu.ifsul.modelo04.Livro;
 import br.edu.ifsul.util.Util;
 import java.io.Serializable;
@@ -20,6 +23,10 @@ public class ControleCatalogo implements Serializable {
     @EJB
     private CatalogoDAO<Catalogo> dao;
     private Catalogo objeto;
+    @EJB
+    private LivroDAO<Livro> daoLivro;
+    @EJB
+    private LivrariaDAO<Livraria> daoLivraria;
 
     private Livro livro;
 
