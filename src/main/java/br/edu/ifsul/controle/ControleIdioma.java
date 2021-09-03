@@ -3,7 +3,9 @@ package br.edu.ifsul.controle;
 import br.edu.ifsul.dao.IdiomaDAO;
 import br.edu.ifsul.modelo04.Idioma;
 import br.edu.ifsul.util.Util;
+import br.edu.ifsul.util.UtilRelatorios;
 import java.io.Serializable;
+import java.util.HashMap;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -22,6 +24,11 @@ public class ControleIdioma implements Serializable {
 
     public ControleIdioma() {
 
+    }
+
+    public void imprimeIdiomas() {
+        HashMap parametros = new HashMap();
+        UtilRelatorios.imprimeRelatorio("relatorioIdiomas", parametros, dao.getListaTodos());
     }
 
     public String listar() {
