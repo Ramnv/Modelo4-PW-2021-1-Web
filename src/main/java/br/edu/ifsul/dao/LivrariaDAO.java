@@ -22,6 +22,7 @@ public class LivrariaDAO<TIPO> extends DAOGenerico<Livraria> implements Serializ
         classePersistente = Livraria.class;
         listaOrdem.add(new Ordem("id", "ID", "="));
         listaOrdem.add(new Ordem("nome", "Nome", "like"));
+        listaOrdem.add(new Ordem("site", "Site", "like"));
         // site?
         // definição da ordem atual
         ordemAtual = listaOrdem.get(1); // vai pegar o segundo da lista de ordens
