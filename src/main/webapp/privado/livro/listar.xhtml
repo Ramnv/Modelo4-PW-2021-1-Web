@@ -20,7 +20,7 @@
                 <div align="center">
                     <p:panelGrid columns="11">
                         <p:outputLabel value="Ordem: "/>
-                        <p:selectOneMenu value="#{controleLivro.dao.ordemAtual}" id="selectOrdem"
+                        <p:selectOneMenu value="#{controleLivro.dao.ordemAtual}"
                                          converter="#{controleLivro.dao.converterOrdem}">
                             <f:selectItems value="#{controleLivro.dao.listaOrdem}"
                                            var="ord" itemValue="#{ord.atributo}"/>
@@ -28,7 +28,6 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="Filtro: "/>
                         <p:inputText value="#{controleLivro.dao.filtro}">
-                            <p:ajax update="listagem" event="blur"/>
                         </p:inputText>
                         <p:commandButton value="Filtrar" update="listagem"/>
                         <p:outputLabel value="Máximo de Objetos: "/>
@@ -97,7 +96,7 @@
                     </p:column>   
                     <p:column headerText="Ações">
                         <div align="center">
-                            <p:commandButton actionListener="#{controleLivro.alterar(obj.isbn)}" 
+                            <p:commandButton actionListener="#{controleLivro.alterar(obj.ISBN)}" 
                                              icon="pi pi-pencil"
                                              title="Editar"
                                              update="formEdicao"

@@ -13,6 +13,12 @@ import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
+/**
+ *
+ * @author Prof. Me. Jorge Luis Boeira Bavaresco
+ * @email jorgebavaresco@ifsul.edu.br
+ * @organization IFSUL - Campus Passo Fundo
+ */
 @Named(value = "controleUsuario")
 @ViewScoped
 public class ControleUsuario implements Serializable {
