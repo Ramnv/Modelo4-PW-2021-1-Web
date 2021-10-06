@@ -33,8 +33,6 @@ public class ControleLivro implements Serializable {
     private IdiomaDAO<Idioma> daoIdioma;
     @EJB
     private FormatoDAO<Formato> daoFormato;
-    @EJB
-    private CatalogoDAO<Catalogo> daoCatalogo;
 
     public ControleLivro() {
 
@@ -109,14 +107,6 @@ public class ControleLivro implements Serializable {
 
     public void setDaoFormato(FormatoDAO<Formato> daoFormato) {
         this.daoFormato = daoFormato;
-    }
-
-    public CatalogoDAO<Catalogo> getDaoCatalogo() {
-        return daoCatalogo;
-    }
-
-    public void setDaoCatalogo(CatalogoDAO<Catalogo> daoCatalogo) {
-        this.daoCatalogo = daoCatalogo;
     }
 
     public LivroBasicoDAO<LivroBasico> getDaoLivroBasico() {

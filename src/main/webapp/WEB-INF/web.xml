@@ -67,7 +67,7 @@
     <!-- configuração do login com formularios do JSF -->
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>PW-2021-1-Realm</realm-name>
+        <realm-name>PW-2021-Modelo04-Realm</realm-name>
         <form-login-config>
             <form-login-page>/login.xhtml</form-login-page>
             <form-error-page>/loginerror.xhtml</form-error-page>
