@@ -37,10 +37,7 @@ public class ControleLivro implements Serializable {
     private LivroBasicoDAO<LivroBasico> daoLivroBasico;
     @EJB
     private IdiomaDAO<Idioma> daoIdioma;
-    @EJB
-    private AutorDAO<Autor> daoAutor;
-    private Autor autor;
-    private Boolean novoAutor;
+
     @EJB
     private FormatoDAO<Formato> daoFormato;
 
@@ -63,28 +60,6 @@ public class ControleLivro implements Serializable {
         } catch (Exception e) {
             Util.mensagemErro("Erro ao imprimir relatório: " + Util.getMensagemErro(e));
         }
-    }
-
-    public void novoAutor() {
-        novoAutor = true;
-        autor = new Autor();
-    }
-
-    public void alterarAutor(int index) {
-        autor = objeto.getAutores().get(index);
-        novoAutor = false;
-    }
-
-    public void salvarAutor() {
-        if (novoAutor) {
-            objeto.adicionarAutor(autor);
-        }
-        Util.mensagemInformacao("Autor adicionado ou atualizado com sucesso");
-    }
-
-    public void removerAutor(int index) {
-        objeto.removerAutor(index);
-        Util.mensagemInformacao("Autor removido com sucesso!");
     }
 
     public String listar() {
@@ -150,14 +125,6 @@ public class ControleLivro implements Serializable {
         this.daoIdioma = daoIdioma;
     }
 
-    public AutorDAO<Autor> getDaoAutor() {
-        return daoAutor;
-    }
-
-    public void setDaoAutor(AutorDAO<Autor> daoAutor) {
-        this.daoAutor = daoAutor;
-    }
-
     public FormatoDAO<Formato> getDaoFormato() {
         return daoFormato;
     }
@@ -172,18 +139,6 @@ public class ControleLivro implements Serializable {
 
     public void setDaoLivroBasico(LivroBasicoDAO<LivroBasico> daoLivroBasico) {
         this.daoLivroBasico = daoLivroBasico;
-    }
-
-    public Autor getAutor() {
-        return autor;
-    }
-
-    public void setAutor(Autor autor) {
-        this.autor = autor;
-    }
-
-    public void setNovoAutor(Boolean novoAutor) {
-        this.novoAutor = novoAutor;
     }
 
 }
