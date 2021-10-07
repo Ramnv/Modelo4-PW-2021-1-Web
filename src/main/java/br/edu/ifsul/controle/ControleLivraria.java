@@ -2,9 +2,7 @@ package br.edu.ifsul.controle;
 
 import br.edu.ifsul.dao.CatalogoDAO;
 import br.edu.ifsul.dao.LivrariaDAO;
-import br.edu.ifsul.dao.LivrariaDAO;
 import br.edu.ifsul.modelo04.Catalogo;
-import br.edu.ifsul.modelo04.Livraria;
 import br.edu.ifsul.modelo04.Livraria;
 import br.edu.ifsul.util.Util;
 import br.edu.ifsul.util.UtilRelatorios;
@@ -29,7 +27,6 @@ public class ControleLivraria implements Serializable {
     private Livraria objeto;
     @EJB
     private CatalogoDAO<Catalogo> daoCatalogo;
-    @EJB
     private Catalogo catalogo;
     private Boolean novoCatalogo;
 
@@ -77,7 +74,7 @@ public class ControleLivraria implements Serializable {
     }
 
     public String listar() {
-        return "/privado/autor/listar?faces-redirect=true";
+        return "/privado/livraria/listar?faces-redirect=true";
     }
 
     public void novo() {
@@ -115,6 +112,14 @@ public class ControleLivraria implements Serializable {
         }
     }
 
+    public CatalogoDAO<Catalogo> getDaoCatalogo() {
+        return daoCatalogo;
+    }
+
+    public void setDaoCatalogo(CatalogoDAO<Catalogo> daoCatalogo) {
+        this.daoCatalogo = daoCatalogo;
+    }
+
     public LivrariaDAO<Livraria> getDao() {
         return dao;
     }
@@ -130,8 +135,8 @@ public class ControleLivraria implements Serializable {
     public void setObjeto(Livraria objeto) {
         this.objeto = objeto;
     }
-    
-        public Catalogo getCatalogo() {
+
+    public Catalogo getCatalogo() {
         return catalogo;
     }
 

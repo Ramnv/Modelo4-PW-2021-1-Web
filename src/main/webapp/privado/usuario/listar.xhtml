@@ -27,7 +27,6 @@
                         </p:selectOneMenu>
                         <p:outputLabel value="Filtro:"/>
                         <p:inputText value="#{controleUsuario.dao.filtro}">
-
                         </p:inputText>
                         <p:commandButton value="Filtrar" update="listagem"/>
                         <p:outputLabel value="Máximo de objetos"/>
@@ -85,9 +84,7 @@
                     </p:column>
                 </p:dataTable>
             </h:form>
-
             <ui:include src="formulario.xhtml"/>
-           
         </ui:define>
     </ui:composition>
 </html>

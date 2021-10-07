@@ -8,6 +8,7 @@ package br.edu.ifsul.dao;
 import br.edu.ifsul.converters.ConverterOrdem;
 import br.edu.ifsul.modelo04.Catalogo;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.Stateful;
 
 /**
@@ -35,6 +36,12 @@ public class CatalogoDAO<TIPO> extends DAOGenerico<Catalogo> implements Serializ
         Catalogo objeto = em.find(Catalogo.class, id);
         objeto.getLivros().size();
         return objeto;
+    }
+
+    // ISBN
+    public List<Catalogo> getListaCompleta() {
+        String jpql = "select distinct c from Catalogo c left join fetch c.livros order by c.ISBN";
+        return em.createQuery(jpql).getResultList();
     }
 
 }

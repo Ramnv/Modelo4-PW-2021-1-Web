@@ -11,7 +11,11 @@ import br.edu.ifsul.modelo04.Idioma;
 import br.edu.ifsul.modelo04.Livraria;
 import br.edu.ifsul.modelo04.Livro;
 import br.edu.ifsul.util.Util;
+import br.edu.ifsul.util.UtilRelatorios;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
@@ -40,6 +44,23 @@ public class ControleCatalogo implements Serializable {
 
     public ControleCatalogo() {
 
+    }
+    
+    public void imprimeCatalogos() {
+        HashMap parametros = new HashMap();
+        UtilRelatorios.imprimeRelatorio("relatorioCatalogos", parametros, dao.getListaCompleta());
+    }
+
+    public void imprimeCatalogo(Object id) {
+        try {
+            objeto = dao.localizar(id);
+            List<Catalogo> lista = new ArrayList<>();
+            lista.add(objeto);
+            HashMap parametros = new HashMap();
+            UtilRelatorios.imprimeRelatorio("relatorioCatalogos", parametros, lista);
+        } catch (Exception e) {
+            Util.mensagemErro("Erro ao imprimir relatório: " + Util.getMensagemErro(e));
+        }
     }
 
     public String listar() {

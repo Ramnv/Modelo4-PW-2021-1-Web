@@ -29,39 +29,37 @@
                     </div>                    
                 </p:tab>        
                 <!--?Livrarias-->
-                <p:tab title="Livros">
-                    <p:dataTable value="#{controleLivraria.objeto.livros}"
-                                 var="livro" rowIndexVar="idxLivro"
-                                 id="listaLivros">
+                <p:tab title="Catalogos">
+                    <p:dataTable value="#{controleLivraria.objeto.catalogos}"
+                                 var="livro" rowIndexVar="idxCatalogo"
+                                 id="listaCatalogos">
                         <f:facet name="header">
-                            <p:commandButton  value="Novo Livro"
-                                              actionListener="#{controleLivraria.novoLivro()}"
-                                              update=":formLivro"
+                            <p:commandButton  value="Novo Catalogo"
+                                              actionListener="#{controleLivraria.novoCatalogo()}"
+                                              update=":formCatalogo"
                                               icon="pi pi-plus"
                                               process="@this"
-                                              oncomplete="PF('dlgLivro').show();"/>                                              
+                                              oncomplete="PF('dlgCatalogo').show();"/>                                              
                         </f:facet>
-                        <p:column headerText="ISBN">
-                            <p:outputLabel value="#{livro.ISBN}"/>
+                        <p:column headerText="ID">
+                            <p:outputLabel value="#{livro.id}"/>
                         </p:column>
-                        <p:column headerText="Titulo">
-                            <p:outputLabel value="#{livro.titulo}"/>
+                        <p:column headerText="Nome">
+                            <p:outputLabel value="#{livro.nome}"/>
                         </p:column>                      
-                        <p:column headerText="Data de Publicação">
-                            <p:outputLabel value="#{livro.dataPublicacao}">
-                                <f:converter converterId="converterCalendar"/>
-                            </p:outputLabel>
+                        <p:column headerText="Descrição">
+                            <p:outputLabel value="#{livro.descricao}"/>
                         </p:column>
                         <p:column headerText="Ações">
                             <p:commandButton icon="pi pi-pencil"
-                                             actionListener="#{controleLivraria.alterarLivro(idxLivro)}"
+                                             actionListener="#{controleLivraria.alterarCatalogo(idxCatalogo)}"
                                              process="@this"
-                                             update=":formLivro"
-                                             oncomplete="PF('dlgLivro').show();"/>
+                                             update=":formCatalogo"
+                                             oncomplete="PF('dlgCatalogo').show();"/>
                             <p:commandButton icon="pi pi-trash"
-                                             actionListener="#{controleLivraria.removerLivro(idxLivro)}"
+                                             actionListener="#{controleLivraria.removerCatalogo(idxCatalogo)}"
                                              process="@this"
-                                             update="tab:listaLivros growl"
+                                             update="tab:listaCatalogos growl"
                                              onclick="if (!confirm('Confirma a exclusão do livro?'))
                                                          return false"/>
                         </p:column>
@@ -78,65 +76,28 @@
             </p:panel>
         </h:form>    
     </p:dialog>
-    <p:dialog header="Edição de Livro" widgetVar="dlgLivro" resizable="false"
+    <p:dialog header="Edição de Catalogo" widgetVar="dlgCatalogo" resizable="false"
               modal="true">
-        <h:form id="formLivro">
+        <h:form id="formCatalogo">
             <p:growl/>
             <p:panelGrid columns="2">
                 <f:facet name="footer">
                     <div align="center">
                         <p:commandButton value="Salvar" icon="pi pi-save"
-                                         actionListener="#{controleLivraria.salvarLivro()}"
-                                         update="tab:listaLivros growl @form"
+                                         actionListener="#{controleLivraria.salvarCatalogo()}"
+                                         update="tab:listaCatalogos growl @form"
                                          process="@form"
-                                         oncomplete="if(!args.validationFailed){PF('dlgLivro').hide();}"/>
+                                         oncomplete="if(!args.validationFailed){PF('dlgCatalogo').hide();}"/>
                     </div>
                 </f:facet>
-                <p:outputLabel value="ISBN"/>
-                <p:inputText value="#{controleLivraria.livro.ISBN}" id="txtISBN"
-                             placeholder="Obrigatório" size="13" maxlength="13"/>
-                <p:outputLabel value="Titulo" for="txtTitulo"/>
-                <p:inputText value="#{controleLivraria.livro.titulo}" id="txtTitulo"
+                <p:outputLabel value="ID"/>
+                <p:inputText value="#{controleLivraria.catalogo.id}" readonly="true"/>
+                <p:outputLabel value="Nome" for="txtNome"/>
+                <p:inputText value="#{controleLivraria.catalogo.nome}" id="txtNome"
                              placeholder="Obrigatório" size="50" maxlength="50"/>
-                <p:outputLabel value="Resumo" for="txtResumo"/>
-                <p:inputText value="#{controleLivraria.livro.resumo}" id="txtResumo"
+                <p:outputLabel value="Descriçao" for="txtDescricao"/>
+                <p:inputText value="#{controleLivraria.catalogo.descricao}" id="txtDescricao"
                              placeholder="Obrigatório" size="50" maxlength="50"/>
-                <p:outputLabel value="Editora" for="txtEditora"/>
-                <p:inputText value="#{controleLivraria.livro.editora}" id="txtEditora"
-                             placeholder="Obrigatório" size="50" maxlength="50"/>
-                <p:outputLabel value="DataPublicacao" for="txtDataPublicacao"/>
-                <p:calendar id="txtDataPublicacao"
-                            value="#{controleLivraria.livro.dataPublicacao}"
-                            mask="true"
-                            pattern="dd/MM/yyyy" navigator="true"
-                            size="10">
-                    <f:converter converterId="converterCalendar"/>
-                </p:calendar>
-                <p:outputLabel value="Valor" for="txtValor"/>
-                <p:inputNumber id="txtValor" value="#{controleLivraria.livro.valor}"
-                               thousandSeparator="" decimalSeparator="."
-                               decimalPlaces="2" size="10"/>
-
-                <p:outputLabel value="Idioma" for="selectIdioma"/>
-                <p:selectOneMenu value="#{controleLivraria.livro.idioma}"
-                                 id="selectIdioma"
-                                 filter="true" filterMatchMode="startsWith">
-                    <f:converter binding="#{converterIdioma}"/>
-                    <f:selectItem itemLabel="Selecione um idioma"
-                                  noSelectionOption="true"/>
-                    <f:selectItems value="#{controleLivraria.daoIdioma.listaTodos}"
-                                   var="idi" itemLabel="#{idi.nome}"/>
-                </p:selectOneMenu>                   
-                <p:outputLabel value="Formato" for="selectFormato"/>
-                <p:selectOneMenu value="#{controleLivraria.objeto.formato}"
-                                 id="selectFormato"
-                                 filter="true" filterMatchMode="startsWith">
-                    <f:converter binding="#{converterFormato}"/>
-                    <f:selectItem itemLabel="Selecione um formato"
-                                  noSelectionOption="true"/>
-                    <f:selectItems value="#{controleLivraria.daoFormato.listaTodos}"
-                                   var="for" itemLabel="#{for.nome}"/>
-                </p:selectOneMenu>                   
             </p:panelGrid>
         </h:form>        
     </p:dialog>
