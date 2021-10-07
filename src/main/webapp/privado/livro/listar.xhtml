@@ -76,9 +76,11 @@
                     <p:column headerText="Editora">
                         <p:outputLabel value="#{obj.editora}"/>
                     </p:column>   
-                    <p:column headerText="DataPublicacao">
-                        <p:outputLabel value="#{obj.dataPublicacao}"/>
-                    </p:column>   
+                    <p:column headerText="Data de Publicação">
+                        <p:outputLabel value="#{obj.dataPublicacao}">
+                            <f:converter converterId="converterCalendar"/>
+                        </p:outputLabel>
+                    </p:column>    
                     <p:column headerText="CodigoBarras">
                         <p:outputLabel value="#{obj.codigoBarras}"/>
                     </p:column>   
@@ -88,8 +90,10 @@
                     <p:column headerText="Ativo">
                         <p:outputLabel value="#{obj.ativo}"/>
                     </p:column>   
-                    <p:column headerText="DataCadastro">
-                        <p:outputLabel value="#{obj.dataCadastro}"/>
+                    <p:column headerText="Data de Cadastro">
+                        <p:outputLabel value="#{obj.dataCadastro}">
+                            <f:converter converterId="converterCalendar"/>
+                        </p:outputLabel>
                     </p:column>   
                     <p:column headerText="Valor">
                         <p:outputLabel value="#{obj.valor}"/>

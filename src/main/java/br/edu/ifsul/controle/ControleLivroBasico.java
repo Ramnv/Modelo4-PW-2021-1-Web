@@ -18,7 +18,7 @@ import javax.inject.Named;
  *
  * @author rvelasco
  */
-@Named(value = "controleLivro")
+@Named(value = "controleLivroBasico")
 @ViewScoped
 public class ControleLivroBasico implements Serializable {
 

@@ -10,6 +10,7 @@ import br.edu.ifsul.modelo04.Livro;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Stateful;
+import javax.persistence.Query;
 
 /**
  *
@@ -38,6 +39,17 @@ public class LivroDAO<TIPO> extends DAOGenerico<Livro> implements Serializable {
         // dar um erro de lazy inicialization exception
         objeto.getAutores().size();
         return objeto;
+    }
+    
+    public boolean verificaUnicidadeISBN(String ISBN) throws Exception {
+        String jpql = "from Livro where ISBN = :pISBN";
+        Query query = em.createQuery(jpql);
+        query.setParameter("pISBN", ISBN);
+        if (query.getResultList().size() > 0) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public List<Livro> getListaCompleta() {

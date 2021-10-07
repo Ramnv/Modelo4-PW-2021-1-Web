@@ -19,6 +19,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
@@ -33,6 +36,7 @@ public class ControleLivro implements Serializable {
     @EJB
     private LivroDAO<Livro> dao;
     private Livro objeto;
+    private Boolean novo;
     @EJB
     private LivroBasicoDAO<LivroBasico> daoLivroBasico;
     @EJB
@@ -41,8 +45,53 @@ public class ControleLivro implements Serializable {
     @EJB
     private FormatoDAO<Formato> daoFormato;
 
+    @EJB
+    private AutorDAO<Autor> daoAutor;
+    private Autor autor;
+    private int abaAtiva;
+
     public ControleLivro() {
 
+    }
+
+    public void removerAutor(Autor obj) {
+        objeto.getAutores().remove(obj);
+        Util.mensagemInformacao("Autor removida com sucesso!");
+    }
+
+    public void adicionarAutor() {
+        if (!objeto.getAutores().contains(autor)) {
+            if (autor != null) {
+                objeto.getAutores().add(autor);
+                Util.mensagemInformacao("Autor adicionada com sucesso!");
+            } else {
+                Util.mensagemErro("Selecione a autor");
+            }
+        } else {
+            Util.mensagemErro("Livro já possui esta autor");
+        }
+    }
+
+    public void verificarUnicidadeISBN() {
+        if (novo) {
+            try {
+                if (!dao.verificaUnicidadeISBN(objeto.getISBN())) {
+                    Util.mensagemErro("Nome de livro '" + objeto.getISBN() + "' "
+                            + " já existe no banco de dados!");
+                    objeto.setISBN(null);
+                    // capturar o componente que chamou o método
+                    UIComponent comp
+                            = UIComponent.getCurrentComponent(FacesContext.getCurrentInstance());
+                    if (comp != null) {
+                        // deixar em vermelho após o update
+                        UIInput input = (UIInput) comp;
+                        input.setValid(false);
+                    }
+                }
+            } catch (Exception e) {
+                Util.mensagemErro("Erro do sistema:" + Util.getMensagemErro(e));
+            }
+        }
     }
 
     public void imprimeLivros() {
@@ -50,13 +99,13 @@ public class ControleLivro implements Serializable {
         UtilRelatorios.imprimeRelatorio("relatorioAutor", parametros, dao.getListaCompleta());
     }
 
-    public void imprimeAutor(Object id) {
+    public void imprimeLivro(Object id) {
         try {
             objeto = dao.localizar(id);
             List<Livro> lista = new ArrayList<>();
             lista.add(objeto);
             HashMap parametros = new HashMap();
-            UtilRelatorios.imprimeRelatorio("relatorioAutor", parametros, lista);
+            UtilRelatorios.imprimeRelatorio("relatorioLivro", parametros, lista);
         } catch (Exception e) {
             Util.mensagemErro("Erro ao imprimir relatório: " + Util.getMensagemErro(e));
         }
@@ -139,6 +188,30 @@ public class ControleLivro implements Serializable {
 
     public void setDaoLivroBasico(LivroBasicoDAO<LivroBasico> daoLivroBasico) {
         this.daoLivroBasico = daoLivroBasico;
+    }
+
+    public AutorDAO<Autor> getDaoAutor() {
+        return daoAutor;
+    }
+
+    public void setDaoAutor(AutorDAO<Autor> daoAutor) {
+        this.daoAutor = daoAutor;
+    }
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public int getAbaAtiva() {
+        return abaAtiva;
+    }
+
+    public void setAbaAtiva(int abaAtiva) {
+        this.abaAtiva = abaAtiva;
     }
 
 }

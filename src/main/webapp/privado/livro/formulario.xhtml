@@ -67,7 +67,7 @@
                             <p:outputLabel value="DataCadastro" for="txtDataCadastro"/>
                             <p:calendar id="txtDataCadastro" 
                                         value="#{controleLivro.objeto.dataCadastro}"
-                                        mask="true" pattern="dd/MM/yyyy" navigator="true">
+                                        mask="dd/MM/yyyy" navigator="true">
                                 <f:converter converterId="converterCalendar"/>
                             </p:calendar>
                             <p:outputLabel value="Valor" for="txtValor"/>
@@ -158,7 +158,7 @@
                              placeholder="Obrigatório" size="20" maxlength="20"/>
                 <p:outputLabel value="Bibliografia" for="txtBibliografia"/>
                 <p:textEditor value="#{controleLivro.autor.bibliografia}"
-                              secure="false" height="200"/>
+                              secure="false" height="200" id="txtBibliografia"/>
             </p:panelGrid>
         </h:form>        
     </p:dialog>
